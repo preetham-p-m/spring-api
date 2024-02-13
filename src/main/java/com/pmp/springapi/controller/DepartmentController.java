@@ -3,6 +3,8 @@ package com.pmp.springapi.controller;
 import java.util.List;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,17 +28,21 @@ public class DepartmentController {
 
     private DepartmentService departmentService;
 
+    private final Logger logger = LoggerFactory.getLogger(DepartmentController.class);
+
     public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
     }
 
     @PostMapping()
     public Department createDepartment(@Valid @RequestBody @NonNull Department department) {
+        logger.debug("Create Department is called");
         return this.departmentService.createDepartment(department);
     }
 
     @GetMapping()
     public List<Department> getDepartments() {
+        logger.info("Get Departments is called");
         return this.departmentService.getDepartments();
     }
 

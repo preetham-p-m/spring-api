@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "spring-api",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.pmp.springapi.SpringApiApplication",
+            "projectName": "spring-api",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "console": "internalConsole"
+        }
+    ]
+}
