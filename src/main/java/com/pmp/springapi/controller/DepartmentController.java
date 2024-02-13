@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pmp.springapi.model.Department;
 import com.pmp.springapi.service.interfaces.DepartmentService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +31,7 @@ public class DepartmentController {
     }
 
     @PostMapping()
-    public Department createDepartment(@RequestBody @NonNull Department department) {
+    public Department createDepartment(@Valid @RequestBody @NonNull Department department) {
         return this.departmentService.createDepartment(department);
     }
 

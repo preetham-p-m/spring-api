@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Department {
@@ -18,6 +19,7 @@ public class Department {
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
+    @NotBlank(message = "Department Name cannot be empty")
     private String name;
 
     private String address;
