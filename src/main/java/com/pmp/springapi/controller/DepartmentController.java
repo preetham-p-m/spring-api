@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
 @RequestMapping("/department")
 @RestController
 public class DepartmentController {
@@ -29,28 +28,33 @@ public class DepartmentController {
         this.departmentService = departmentService;
     }
 
+    @PostMapping()
+    public Department createDepartment(@RequestBody @NonNull Department department) {
+        return this.departmentService.createDepartment(department);
+    }
+
     @GetMapping()
     public List<Department> getDepartments() {
-        return departmentService.getDepartments();
+        return this.departmentService.getDepartments();
     }
 
     @GetMapping("{id}")
     public Department getDepartmentById(@PathVariable("id") @NonNull UUID id) {
-        return departmentService.getDepartmentsId(id);
+        return this.departmentService.getDepartmentsId(id);
     }
 
-    @PostMapping()
-    public Department createDepartment(@RequestBody @NonNull Department department) {
-        return departmentService.createDepartment(department);
+    @GetMapping("/name/{name}")
+    public Department getDepartmentByName(@PathVariable("name") @NonNull String name) {
+        return this.departmentService.getDepartmentByName(name);
     }
 
     @PutMapping("{id}")
     public Department putMethodName(@PathVariable("id") @NonNull UUID id, @RequestBody @NonNull Department department) {
-        return departmentService.updateDepartment(id, department);
+        return this.departmentService.updateDepartment(id, department);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteDepartment(@PathVariable("id") @NonNull UUID id) {
-        return departmentService.deleteDepartment(id);
+        return this.departmentService.deleteDepartment(id);
     }
 }

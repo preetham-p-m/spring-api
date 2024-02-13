@@ -10,11 +10,13 @@ import com.pmp.springapi.model.Department;
 
 public interface DepartmentService {
 
+    Department createDepartment(@NonNull Department department);
+
     List<Department> getDepartments();
 
     Department getDepartmentsId(@NonNull UUID i);
 
-    Department createDepartment(@NonNull Department department);
+    Department getDepartmentByName(@NonNull String name);
 
     Department updateDepartment(UUID id, Department department);
 

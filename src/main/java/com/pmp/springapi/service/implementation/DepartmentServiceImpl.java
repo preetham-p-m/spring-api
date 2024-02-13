@@ -23,6 +23,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    public Department createDepartment(@NonNull Department department) {
+        return this.departmentRepository.save(department);
+    }
+
+    @Override
     public List<Department> getDepartments() {
         return this.departmentRepository.findAll();
     }
@@ -33,8 +38,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department createDepartment(@NonNull Department department) {
-        return this.departmentRepository.save(department);
+    public Department getDepartmentByName(@NonNull String name) {
+        return this.departmentRepository.findByName(name);
     }
 
     @Override
@@ -61,5 +66,4 @@ public class DepartmentServiceImpl implements DepartmentService {
         this.departmentRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

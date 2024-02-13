@@ -34,11 +34,11 @@ public class Department {
     }
 
     public UUID getId() {
-        return id;
+        return this.id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -46,7 +46,7 @@ public class Department {
     }
 
     public String getAddress() {
-        return address;
+        return this.address;
     }
 
     public void setAddress(String address) {
@@ -54,7 +54,7 @@ public class Department {
     }
 
     public DepartmentCode getCode() {
-        return code;
+        return this.code;
     }
 
     public void setCode(DepartmentCode code) {
@@ -63,7 +63,8 @@ public class Department {
 
     @Override
     public String toString() {
-        return "Department [id=" + id + ", name=" + name + ", address=" + address + ", code=" + code + "]";
+        return "Department [id=" + this.id + ", name=" + this.name + ", address=" + this.address + ", code=" + this.code
+                + "]";
     }
 
 }

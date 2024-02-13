@@ -9,4 +9,6 @@ import com.pmp.springapi.model.Department;
 
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, UUID> {
+
+    public Department findByName(String name);
 }
