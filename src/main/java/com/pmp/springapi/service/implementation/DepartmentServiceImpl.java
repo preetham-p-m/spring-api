@@ -41,11 +41,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Department updateDepartment(UUID id, Department department) {
         Department departmentDB = this.departmentRepository.findById(id).get();
 
-        if (Objects.nonNull(department.getName()) && "".equalsIgnoreCase(department.getName())) {
+        if (Objects.nonNull(department.getName()) && !"".equalsIgnoreCase(department.getName())) {
             departmentDB.setName(department.getName());
         }
 
-        if (Objects.nonNull(department.getAddress()) && "".equalsIgnoreCase(department.getAddress())) {
+        if (Objects.nonNull(department.getAddress()) && !"".equalsIgnoreCase(department.getAddress())) {
             departmentDB.setAddress(department.getAddress());
         }
 
