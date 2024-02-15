@@ -10,8 +10,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Department {
 
     @Id
@@ -25,48 +31,5 @@ public class Department {
     private String address;
 
     private DepartmentCode code;
-
-    public Department() {
-    }
-
-    public Department(String name, String address, DepartmentCode code) {
-        this.name = name;
-        this.address = address;
-        this.code = code;
-    }
-
-    public UUID getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public DepartmentCode getCode() {
-        return this.code;
-    }
-
-    public void setCode(DepartmentCode code) {
-        this.code = code;
-    }
-
-    @Override
-    public String toString() {
-        return "Department [id=" + this.id + ", name=" + this.name + ", address=" + this.address + ", code=" + this.code
-                + "]";
-    }
 
 }
