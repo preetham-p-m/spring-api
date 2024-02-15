@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pmp.springapi.error.not_found.NotFoundException;
 import com.pmp.springapi.model.Department;
 import com.pmp.springapi.service.interfaces.DepartmentService;
 
@@ -46,8 +47,8 @@ public class DepartmentController {
         return this.departmentService.getDepartments();
     }
 
-    @GetMapping("{id}")
-    public Department getDepartmentById(@PathVariable("id") @NonNull UUID id) {
+    @GetMapping("/{id}")
+    public Department getDepartmentById(@PathVariable("id") @NonNull UUID id) throws NotFoundException {
         return this.departmentService.getDepartmentsId(id);
     }
 
@@ -56,8 +57,9 @@ public class DepartmentController {
         return this.departmentService.getDepartmentByName(name);
     }
 
-    @PutMapping("{id}")
-    public Department putMethodName(@PathVariable("id") @NonNull UUID id, @RequestBody @NonNull Department department) {
+    @PutMapping("/{id}")
+    public Department putMethodName(@PathVariable("id") @NonNull UUID id, @RequestBody @NonNull Department department)
+            throws NotFoundException {
         return this.departmentService.updateDepartment(id, department);
     }
 

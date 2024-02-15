@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
+import com.pmp.springapi.error.not_found.NotFoundException;
 import com.pmp.springapi.model.Department;
 import com.pmp.springapi.repository.interfaces.DepartmentRepository;
 import com.pmp.springapi.service.interfaces.DepartmentService;
@@ -33,8 +34,14 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department getDepartmentsId(@NonNull UUID id) {
-        return this.departmentRepository.findById(id).get();
+    public Department getDepartmentsId(@NonNull UUID id) throws NotFoundException {
+        var department = this.departmentRepository.findById(id);
+
+        if (!department.isPresent()) {
+            throw new NotFoundException("Deparment not found");
+        }
+
+        return department.get();
     }
 
     @Override
@@ -43,22 +50,28 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department updateDepartment(UUID id, Department department) {
-        Department departmentDB = this.departmentRepository.findById(id).get();
+    public Department updateDepartment(@NonNull UUID id, Department newDepartment) throws NotFoundException {
+        var optionaldDepartment = this.departmentRepository.findById(id);
 
-        if (Objects.nonNull(department.getName()) && !"".equalsIgnoreCase(department.getName())) {
-            departmentDB.setName(department.getName());
+        if (!optionaldDepartment.isPresent()) {
+            throw new NotFoundException("Department not found");
         }
 
-        if (Objects.nonNull(department.getAddress()) && !"".equalsIgnoreCase(department.getAddress())) {
-            departmentDB.setAddress(department.getAddress());
+        var department = optionaldDepartment.get();
+
+        if (Objects.nonNull(newDepartment.getName()) && !"".equalsIgnoreCase(newDepartment.getName())) {
+            department.setName(newDepartment.getName());
         }
 
-        if (Objects.nonNull(department.getCode())) {
-            departmentDB.setCode(department.getCode());
+        if (Objects.nonNull(newDepartment.getAddress()) && !"".equalsIgnoreCase(newDepartment.getAddress())) {
+            department.setAddress(newDepartment.getAddress());
         }
 
-        return this.departmentRepository.save(departmentDB);
+        if (Objects.nonNull(newDepartment.getCode())) {
+            department.setCode(newDepartment.getCode());
+        }
+
+        return this.departmentRepository.save(department);
     }
 
     @Override

@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 
+import com.pmp.springapi.error.not_found.NotFoundException;
 import com.pmp.springapi.model.Department;
 
 public interface DepartmentService {
@@ -14,11 +15,11 @@ public interface DepartmentService {
 
     List<Department> getDepartments();
 
-    Department getDepartmentsId(@NonNull UUID i);
+    Department getDepartmentsId(@NonNull UUID i) throws NotFoundException;
 
     Department getDepartmentByName(@NonNull String name);
 
-    Department updateDepartment(UUID id, Department department);
+    Department updateDepartment(@NonNull UUID id, Department department) throws NotFoundException;
 
     ResponseEntity<Object> deleteDepartment(@NonNull UUID id);
 }
