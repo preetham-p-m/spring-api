@@ -16,7 +16,7 @@ spring:
 
   # MySQL
   datasource:
-    url: jdbc:mysql://localhost:3306/dcbapp
+    url: jdbc:mysql://localhost:3306/devdb
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -36,6 +36,7 @@ logging:
 # Custom Config
 welcome:
   message: Spring Boot Application Version 1 - Development Mode
+
 ---
 spring:
   config:
@@ -43,7 +44,7 @@ spring:
       on-profile: QA
   # MySQL
   datasource:
-    url: jdbc:mysql://localhost:3306/dcbapp
+    url: jdbc:mysql://localhost:3306/qadb
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -71,7 +72,7 @@ spring:
       on-profile: Production
   # MySQL
   datasource:
-    url: jdbc:mysql://localhost:3306/dcbapp
+    url: jdbc:mysql://localhost:3306/proddb
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
