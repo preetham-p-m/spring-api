@@ -5,19 +5,14 @@ server:
   port: 8082
 
 spring:
-  # # H2 Database
-  # h2:
-  #     console:
-  #         enabled: true
+  profiles:
+    active: Development
 
-  # datasource:
-  #     url: jdbc:h2:mem:dcbapp
-  #     driverClassName: org.h2.Driver
-  #     username: sa
-  #     password: password
-
-  # jpa:
-  #     database-platform: org.hibernate.dialect.H2Dialect
+---
+spring:
+  config:
+    activate:
+      on-profile: Development
 
   # MySQL
   datasource:
@@ -40,4 +35,59 @@ logging:
 
 # Custom Config
 welcome:
-  message: Spring Boot Application Version 1
+  message: Spring Boot Application Version 1 - Development Mode
+---
+spring:
+  config:
+    activate:
+      on-profile: QA
+  # MySQL
+  datasource:
+    url: jdbc:mysql://localhost:3306/dcbapp
+    username: root
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# Logging
+logging:
+  level:
+    root: INFO
+  pattern:
+    console: '{"timeStamp":"%d{yyyy-MM-dd HH:mm:ss}", "level": "%p", "logger": "%logger{36}", "message": "%msg"}%n'
+
+# Custom Config
+welcome:
+  message: Spring Boot Application Version 1 - QA Mode
+
+---
+spring:
+  config:
+    activate:
+      on-profile: Production
+  # MySQL
+  datasource:
+    url: jdbc:mysql://localhost:3306/dcbapp
+    username: root
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# Logging
+logging:
+  level:
+    root: INFO
+  pattern:
+    console: '{"timeStamp":"%d{yyyy-MM-dd HH:mm:ss}", "level": "%p", "logger": "%logger{36}", "message": "%msg"}%n'
+
+# Custom Config
+welcome:
+  message: Spring Boot Application Version 1 - Production Mode
